@@ -1,0 +1,4 @@
+*.log
+*.pickle
+*.py[cdw]
+.secrets.*

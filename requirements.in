@@ -1,0 +1,5 @@
+dynaconf
+flake8
+mypy
+pytest
+requests

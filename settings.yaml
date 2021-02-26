@@ -1,0 +1,21 @@
+---
+default:
+  logging:
+    formatters:
+      default:
+        format: '[%(asctime)s] [%(process)d] [%(levelname)s] %(message)s'
+    handlers:
+      console:
+        class: logging.StreamHandler
+        formatter: default
+        stream: ext://sys.stderr
+        level: DEBUG
+      log_file:
+        class: logging.FileHandler
+        formatter: default
+        filename: github-watcher.log
+        level: DEBUG
+    loggers: {}
+    root:
+      handlers: ['log_file', 'console']
+      level: DEBUG
