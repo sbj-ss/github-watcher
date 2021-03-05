@@ -31,7 +31,7 @@ pip-compile --upgrade
 ```
 ### Running tests
 ```shell
-./tests.sh
+./test.sh
 ```
 ### Running
 ```shell
