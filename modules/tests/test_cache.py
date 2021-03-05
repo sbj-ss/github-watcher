@@ -11,6 +11,7 @@ def test_pickled_dict_cache():
     with pytest.raises(KeyError):
         _ = d['b']
     assert d.get('b') is None
+    assert d.get('b', 2) == 2
     d.save()
 
     d2 = PickledDictCache(FILE)

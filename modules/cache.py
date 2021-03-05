@@ -1,6 +1,6 @@
 from logging import getLogger
 from pickle import HIGHEST_PROTOCOL, dump as pickle_dump, load as pickle_load
-from typing import Any, Dict
+from typing import Any, Dict, Optional
 
 
 class CacheBase:
@@ -18,11 +18,11 @@ class CacheBase:
     def __setitem__(self, key: str, value: Any) -> None:
         raise NotImplementedError
 
-    def get(self, key: str) -> Any:
+    def get(self, key: str, default: Optional[Any] = None) -> Any:
         try:
             return self[key]
         except KeyError:
-            return None
+            return default
 
     def save(self) -> None:
         raise NotImplementedError
@@ -53,4 +53,3 @@ class PickledDictCache(CacheBase):
                 pickle_dump(self.values, f, protocol=HIGHEST_PROTOCOL)
         except OSError as e:
             self.logger.error('Can\'t open file "%s": "%s" for writing. Cache not saved.', self.conn_string, e)
-            self.values = {}
